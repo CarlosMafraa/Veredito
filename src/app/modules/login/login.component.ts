@@ -4,7 +4,7 @@ import {MenuComponent} from '../../shareds/modules/menu/menu.component';
 
 @Component({
   selector: 'app-login',
-  imports: [HeaderComponent, MenuComponent],
+  imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   standalone: true
