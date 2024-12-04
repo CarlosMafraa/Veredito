@@ -1,0 +1,55 @@
+<div class="flex gap-2 align-items-center justify-content-center">
+  <div class="photoProfile flex align-items-center justify-content-center cursor-pointer" (click)="showDialog()">
+    @if (photoUser) {
+      <img [src]="imagePreview || img">
+    } @else if (!photoUser) {
+      {{ letterName | uppercase }}
+    } @else {
+      <img [src]="imagePreview">
+    }
+  </div>
+
+  @if (!animation) {
+    <div>
+      <p class="font-semibold pb-1">{{ nome }}</p>
+      <p class="font-light">{{ occupation }}</p>
+    </div>
+  }
+</div>
+
+<div class="dialog-profile flex justify-content-center">
+  <p-dialog header="Perfil" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+            [style]="{ width: '300px', height: '350px' }" [draggable]="false" [resizable]="false" (onHide)="close()">
+
+    <form [formGroup]="profilePhotoForm">
+      <div class="flex align-content-center justify-content-center">
+        <div class="photoDialog flex align-items-center justify-content-center relative">
+          @if (photoUser) {
+            <img [src]="imagePreview || img">
+          } @else if (!photoUser) {
+            {{ letterName | uppercase}}
+          } @else {
+            <img [src]="imagePreview">
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-column align-items-center mt-3">
+        <p class="font-semibold pb-1">{{ nome }}</p>
+        <p class="font-light">{{ occupation }}</p>
+      </div>
+      <div class="input-file flex absolute m-2">
+        <label class="flex w-full justify-content-center align-content-center" for="selecao-doc"><i
+          class="pi pi-pencil flex w-full align-items-center justify-content-center"></i></label>
+        <input id="selecao-doc" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" value=""
+               (change)="onUpload($event)"/>
+      </div>
+      <div class="delete-file flex absolute m-2">
+        <div class="flex w-full justify-content-center align-content-center" (click)="deleteFile()">
+          <i class="pi pi-times flex w-full align-items-center justify-content-center"></i>
+        </div>
+      </div>
+    </form>
+
+  </p-dialog>
+</div>
